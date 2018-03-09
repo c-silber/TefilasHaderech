@@ -5,6 +5,14 @@
  */
 
 import React, { Component } from 'react';
+import { ApolloProvider } from 'react-apollo';
+
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache
+} from 'apollo-client-preset';
+
 import {
   Platform,
   StyleSheet,
@@ -12,30 +20,31 @@ import {
   View
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+import Register from './src/screens/Register'
+import Login from './src/screens/Login'
+import Profile from './src/screens/Profile'
+
+const client = new ApolloClient({
+  link: new HttpLink({uri: 'https://zr9r0p0547.lp.gql.zone/graphql'}),
+  cache: new InMemoryCache()
 });
 
 type Props = {};
 export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Tefilas Haderech!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
+  state = {
+     isLoggedIn: false
+   }
+
+   render() {
+     if (this.state.isLoggedIn)
+       return <Profile
+           onLogoutPress={() => this.setState({isLoggedIn: false})}
+         />;
+     else
+       return <Login
+           onLoginPress={() => this.setState({isLoggedIn: true})}
+         />;
+   }
 }
 
 const styles = StyleSheet.create({

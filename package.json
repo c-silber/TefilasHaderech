@@ -7,12 +7,25 @@
     "test": "jest"
   },
   "dependencies": {
+    "apollo-client-preset": "^1.0.8",
+    "native-base": "^2.3.9",
     "react": "16.3.0-alpha.1",
+    "react-apollo": "^2.0.4",
     "react-native": "0.54.0"
   },
+  "peerDependencies": {
+    "apollo-client": "^2.2.3"
+  },
   "devDependencies": {
+    "apollo-cache-inmemory": "1.1.10",
+    "apollo-client": "2.2.6",
+    "apollo-link": "1.2.1",
+    "babel-core": "6.26.0",
     "babel-jest": "22.4.1",
+    "babel-preset-env": "1.6.1",
     "babel-preset-react-native": "4.0.0",
+    "graphql": "^0.13.1",
+    "graphql-tag": "^2.8.0",
     "jest": "22.4.2",
     "react-test-renderer": "16.3.0-alpha.1"
   },
