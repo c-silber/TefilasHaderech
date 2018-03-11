@@ -15,3 +15,8 @@ Tefilas Haderech App
 2) run npm install
 3) make sure xcode is up to date
 4) run react-native run-ios
+
+
+Tech Links:
+- MongoDB: https://mlab.com/databases/tefilashaderech/collections/users
+- GraphQL Endpoint on Apollo Launchpad: https://launchpad.graphql.com/zr9r0p0547

@@ -1,39 +1,42 @@
 import React, { Component } from 'react';
-import {
-    ScrollView,
-    Text,
-    View,
-    StyleSheet,
-    Button
-} from 'react-native';
+import { Container, Content, Button, View, Text } from 'native-base';
 
-export default class Profile extends Component {
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+class Profile extends Component {
+  handleLogout = () => {
+    return this.props.screenProps.changeLoginState(false);
+  };
+
     render() {
-        return (
-            <ScrollView style={styles.container}>
-                <Text
-                    style={styles.welcome}>
-                    Welcome
-                </Text>
-                <View style={{margin:20}} />
-                <Button     color='#805E73'
-                            onPress={this.props.onLogoutPress}
-                            title="Logout"
-                     />
-                </ScrollView>
-                )
-    }
+      const { currentUser } = this.props.data;
+
+    return (
+      <Container>
+        <Content>
+          {currentUser &&
+            <View>
+              <Text>{currentUser._id}</Text>
+              <Text>{currentUser.email}</Text>
+            </View>
+          }
+          <Button full onPress={this.handleLogout}>
+            <Text>Log Out</Text>
+          </Button>
+        </Content>
+      </Container>
+    );
+  }
 }
 
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 27,
-    textAlign: 'center',
-    margin: 10,
-  }
-});
+export default graphql(
+  gql`
+    query User {
+      currentUser {
+        _id
+        email
+      }
+    }
+  `
+)(Profile);

@@ -8,10 +8,13 @@
   },
   "dependencies": {
     "apollo-client-preset": "^1.0.8",
+    "apollo-link-context": "^1.0.7",
     "native-base": "^2.3.9",
+    "npm": "^5.7.1",
     "react": "16.3.0-alpha.1",
     "react-apollo": "^2.0.4",
-    "react-native": "0.54.0"
+    "react-native": "0.54.0",
+    "react-navigation": "^1.5.1"
   },
   "peerDependencies": {
     "apollo-client": "^2.2.3"
